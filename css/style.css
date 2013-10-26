@@ -1,0 +1,573 @@
+/* ==========================================================================
+   p2.turkeyumber.com styles
+   ========================================================================== 
+        Colors: GREEN rgb(188,200,50);
+                MED GREEN rgb(201,211,91);
+                LT GREEN rgb(248,249,234);
+                BLUE rgb(185,229,251);
+                LT BLUE rgb(220,242,253);
+                RED rgb(132,34,60);
+                GREY #555;
+   */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.25em;
+}
+
+body {
+    background-color: rgb(220,242,253);
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(132,34,60);
+}
+
+/* PAGE HEAD */
+header {
+    min-height: 90px;
+    max-width: 800px;
+    background-color: #FFF;
+    border-radius: 12px 12px 0 0;
+    -webkit-border-radius: 12px 12px 0 0;
+    -moz-border-radius: 12px 12px 0 0;
+    margin: 10px auto 0 auto;
+    position: relative;
+}
+
+.logo {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+.logout-profile {
+    position: relative;
+    color: rgb(132,34,60);
+    font-size: .7em;
+    font-family: 'Asap', sans-serif;
+    text-decoration: none;
+    margin-right: 15px;
+    display: inline-block;
+    float: right;
+}
+
+.greeting {
+    position: relative;
+    color: rgb(132,34,60);
+    font-size: .7em;
+    font-family: 'Asap', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    margin-left: 15px;
+    display: inline-block;
+    float: left;
+}
+
+/* PAGE NAV */
+nav{
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.main {
+    background-color: rgb(188,200,50);
+    width: 100%;
+    height: 30px;
+}
+
+nav ul {
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    height: 30px;
+}
+
+nav ul li {
+    font-size: 16px;
+    font-family: 'Asap', sans-serif;
+    font-weight: 400;
+    display: inline-block;
+    padding-top: 4px;
+}
+
+nav ul li a {
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    font-weight: 700;
+}
+
+.main ul li a {
+    color: #FFF;
+    padding: 9px 10px;
+}
+
+.main ul li a:hover, .main .active {
+    background-color: rgb(201,211,91);
+    font-weight: 400;
+}
+
+.sub {
+    max-width: 800px;
+    height: 30px;
+    margin: 0 auto;
+    background-color: rgb(248,249,234);
+}
+
+.sub ul li a {
+    color: #555;
+    font-size: .9em;
+    padding: 0 10px;
+
+}
+
+.sub ul li a:hover, .sub .active {
+    color: rgb(132,34,60);
+    font-weight: 700;
+}
+
+
+/* PAGE CONTENT */
+.contentwrap {
+    max-width: 740px;
+    background-color: #FFF;
+    border-radius: 0 0 12px 12px;
+    -webkit-border-radius: 0 0 12px 12px;
+    -moz-border-radius: 0 0 12px 12px;
+    margin: 0 auto;
+    padding: 30px;
+    display: block; 
+    position: relative;
+}
+
+article.bleat, div.follow {
+    font-family: 'Asap', sans-serif;
+    max-width: 740px;
+    position: relative;
+    display: block;
+    float: left;
+    border-bottom: 1px solid #D1D1D1;
+    margin-bottom: 15px;
+}
+
+div.follow {
+    margin: 0 auto 15px auto;
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+img.bleat, img.follow  {
+    margin: 0 15px 0 8px; 
+    float: left;
+}
+
+h1.bleat, h1.follow {
+    font-size: 1em;
+    font-weight: 700;
+    color: rgb(132,34,60);
+    margin: 0 0 0 8px;
+}
+
+p.bleat, p.follow {
+    font-size: 1em;
+    font-weight: 400;
+    color: #555;
+    margin: 0 0 0 8px;
+    position: relative;
+}
+
+time.bleat  {
+    font-size: .75em;
+    font-weight: 400;
+    color: rgb(132,34,60);  
+    display: block;
+    position: relative;
+    margin: 0 0 5px 8px;
+}
+
+aside.baa-left {
+    clear:both;
+    font-size: .75em;
+    font-weight: 400;
+    color: rgb(188,200,50);
+    display: block;
+    float: left;
+    position: relative;
+    margin: 0 0 7px 8px;
+}
+
+aside.baa-left:before {
+    content:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/baa.jpg);
+    margin-right: 5px;
+    position: relative;
+    height: 100%;
+    width: 15px;
+    display: block;
+    float: left;
+}
+
+aside.baa-right {
+    font-size: .75em;
+    font-weight: 400;
+    color: rgb(188,200,50);
+    float: right;
+    position: relative;
+    margin-right: 8px;
+}
+
+
+
+h1.flock-list{
+    font-size: .85em;
+    font-weight: 400;
+    color: #555;
+    margin: 0 auto 20px auto;
+    font-family: 'Asap', sans-serif;
+    text-align: center;
+}
+
+p.flock-list {
+    clear:both;
+    font-size: 1em;
+    font-weight: 400;
+    padding: 0 8px 8px 8px;
+    margin-bottom: -8px; 
+    position: relative;
+    color: rgb(132,34,60);
+    max-width: 740px;
+    border-bottom: 1px solid #D1D1D1;
+    font-family: 'Asap', sans-serif;
+}
+
+a.flock-list {
+    font-size: .75em;
+    float: right;
+    text-align: right;    
+    display: inline-block;
+    padding-right: 25px; 
+    cursor: pointer;
+    font-family: 'Asap', sans-serif;
+}
+
+a.flock-list.following {
+    background:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/following.jpg) no-repeat right top;
+    color: rgb(188,200,50);
+}
+
+a.flock-list.not-following {
+    background:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/not-following.jpg) no-repeat right top;
+    color: rgb(185,229,251)
+}
+
+form.bleatform{
+    display: block;
+    max-width: 500px;
+    margin: 0 auto; 
+    text-align: center;
+}
+
+form.bleatform label {
+    display: block;
+    color: rgb(132,34,60);
+    font-family: 'Asap', sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+form.bleatform textarea {
+    display: block;
+    margin-bottom: 15px;
+    width: 500px;
+    min-height: 200px;
+    margin: 0 auto;
+    resize:none;
+}
+
+form.bleatform input[type=submit] {
+    float: right;
+    margin-top: 15px;
+    background-color: rgb(188,200,50);
+    font-family: 'Asap', sans-serif;
+    color: #fff;
+    width: 80px;
+    min-height: 25px;
+    border: 0;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+form.bleatform input[type=submit]:active {
+    background-color: rgb(201,211,91);
+}
+
+
+
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background-color: rgb(188,200,50);
+    text-shadow: none;
+}
+
+::selection {
+    background-color: rgb(188,200,50);
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
