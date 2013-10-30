@@ -1,24 +1,26 @@
-<h1>Log in</h1>
+<div class="contentwrap clearfix">
+    <h1>Log in</h1>
 
-<form method='POST' action='/users/p_login'>
+    <form method='POST' action='/users/p_login'>
 
-    Email<br>
-    <input type='text' name='email'>
+        Email<br>
+        <input type='text' name='email'>
 
-    <br><br>
+        <br><br>
 
-    Password<br>
-    <input type='password' name='password'>
+        Password<br>
+        <input type='password' name='password'>
 
-    <br><br>
+        <br><br>
 
-    <input type='submit' value='Log in'>
+        <input type='submit' value='Log in'>
 
-    <?php if(isset($error)): ?>
-        <div class='error'>
-            Login failed. Please double check your email and password.
-        </div>
-        <br>
-    <?php endif; ?>
+        <?php if(isset($error)): ?>
+            <div class='error'>
+                Login failed. Please double check your email and password.
+            </div>
+            <br>
+        <?php endif; ?>
 
-</form>
+    </form>
+</div>

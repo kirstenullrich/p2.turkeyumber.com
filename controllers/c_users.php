@@ -1,5 +1,6 @@
 <?php
-class users_controller extends base_controller {
+class users_controller 
+extends base_controller {
 
     public function __construct() {
         parent::__construct();
@@ -8,17 +9,18 @@ class users_controller extends base_controller {
 
 
     public function index() {
-        echo "This is the index page";
+        Router::redirect("/posts");
     }
 
 
 
-    public function signup($error = NULL) {
+    public function signup($missing = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
-            $this->template->content->error = $error;
+            $this->template->content->missing = $missing;
+
 
         # Render template
             echo $this->template;
@@ -26,14 +28,31 @@ class users_controller extends base_controller {
     }
 
     public function p_signup() {
-           $fn_error = "";
 
-                if (empty($_POST["first_name"])) {
-                    $fn_error = "YOU HAVE A NAME, DON'T YOU?";
-                    Router::redirect("/users/signup/error");
+        $missingArray = Array();
+        $signupArray = Array();
+        $errorMessage = 'Missing';
+
+
+                foreach($_POST as $key => $value) {
+                    if (empty($value)) {
+                        $missingArray[] = $key;
+                    } else if (!empty($value)) {
+                        $signupArray[] = $key;
+                    }
                 }
-            
 
+
+       if (!empty($missingArray)) {
+         // print_r($signupArray);
+        Router::redirect("/users/signup/missing");
+        }
+
+
+      //  $this->template->content = View::instance('v_users_signup');
+      //  $this->template->content->errors = $errorsArray;
+
+            $_POST['image']  = Upload::upload($_FILES, "/uploads/", array("jpg", "jpeg", "gif", "png"), $_POST['image']);
         # More data we want stored with the user
             $_POST['created']  = Time::now();
             $_POST['modified'] = Time::now();
@@ -49,12 +68,18 @@ class users_controller extends base_controller {
 
        # Go back to Login page
             Router::redirect("/users/login/");
+
+    
+
+
     }
 
     
 
     public function login($error = NULL) {
         # Setup view
+            $this->template->head = View::instance("v_index_head");
+            $this->template->nav = View::instance("v_users_nav");
             $this->template->content = View::instance('v_users_login');
             $this->template->title   = "Login";
             $this->template->content->error = $error;
@@ -124,7 +149,7 @@ class users_controller extends base_controller {
             setcookie("token", "", strtotime('-1 year'), '/');
 
         # Send them back to the main index.
-            Router::redirect("/");
+            Router::redirect("/users/login");
 
     }
 
@@ -140,6 +165,8 @@ class users_controller extends base_controller {
         # If they weren't redirected away, continue:
 
         # Setup view
+            $this->template->head = View::instance("v_profile_head");
+            $this->template->nav = View::instance("v_posts_users_nav");
             $this->template->content = View::instance('v_users_profile');
             $this->template->title   = "Profile of".$this->user->first_name;
 
@@ -147,6 +174,10 @@ class users_controller extends base_controller {
             echo $this->template;
     }
 
-
+     public function p_profile() {
+            $q = "SELECT * 
+                FROM users
+                WHERE user_id = ".$this->user->user_id;
+    }
 
 } # end of the class

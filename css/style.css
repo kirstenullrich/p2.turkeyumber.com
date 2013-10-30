@@ -54,7 +54,7 @@ header {
 .logout-profile {
     position: relative;
     color: rgb(132,34,60);
-    font-size: .7em;
+    font-size: .9em;
     font-family: 'Asap', sans-serif;
     text-decoration: none;
     margin-right: 15px;
@@ -65,13 +65,18 @@ header {
 .greeting {
     position: relative;
     color: rgb(132,34,60);
-    font-size: .7em;
+    font-size: .9em;
     font-family: 'Asap', sans-serif;
     font-weight: 400;
     text-decoration: none;
     margin-left: 15px;
     display: inline-block;
     float: left;
+    text-transform: uppercase;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 /* PAGE NAV */
@@ -85,6 +90,10 @@ nav{
     background-color: rgb(188,200,50);
     width: 100%;
     height: 30px;
+}
+
+.hidden {
+    visibility: hidden;
 }
 
 nav ul {
@@ -155,12 +164,14 @@ nav ul li a:hover {
 
 article.bleat, div.follow {
     font-family: 'Asap', sans-serif;
+    width: 100%;
     max-width: 740px;
     position: relative;
     display: block;
     float: left;
     border-bottom: 1px solid #D1D1D1;
     margin-bottom: 15px;
+    clear: left;
 }
 
 div.follow {
@@ -210,7 +221,7 @@ aside.baa-left {
 }
 
 aside.baa-left:before {
-    content:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/baa.jpg);
+    content:url(/img/baa.jpg);
     margin-right: 5px;
     position: relative;
     height: 100%;
@@ -263,12 +274,12 @@ a.flock-list {
 }
 
 a.flock-list.following {
-    background:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/following.jpg) no-repeat right top;
+    background:url(/img/following.jpg) no-repeat right top;
     color: rgb(188,200,50);
 }
 
 a.flock-list.not-following {
-    background:url(file:///Users/kirsten/Sites/p2.turkeyumber.com/~WORKING/h5bp-html5-boilerplate-72cdf1e/img/not-following.jpg) no-repeat right top;
+    background:url(/img/not-following.jpg) no-repeat right top;
     color: rgb(185,229,251)
 }
 
