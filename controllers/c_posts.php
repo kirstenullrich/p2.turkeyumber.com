@@ -151,27 +151,14 @@ class posts_controller extends base_controller {
             $this->template->title   = "Bleats";
 
             # Build the query to get all the users
-            $q = "SELECT *
-                FROM users";
+           $q = "SELECT COUNT(post_id)
+            FROM users_posts
+            WHERE post_id = ".$this->post; 
 
-            # Execute the query to get all the users. 
-            # Store the result array in the variable $users
-            $users = DB::instance(DB_NAME)->select_rows($q);
 
-            # Build the query to figure out what connections does this user already have? 
-            # I.e. who are they following
-            $q = "SELECT * 
-                FROM users_posts";
+            $baa = DB::instance(DB_NAME)->select_rows($q);
 
-            # Execute this query with the select_array method
-            # select_array will return our results in an array and use the "users_id_followed" field as the index.
-            # This will come in handy when we get to the view
-            # Store our results (an array) in the variable $connections
-            $baa = DB::instance(DB_NAME)->select_array($q, 'post_id');
-
-            # Pass data (users and connections) to the view
-            $this->template->content->users       = $users;
-            $this->template->content->baa = $baa;
+            $this->template->content->posts = $baa;
 
             # Render the view
             echo $this->template;
