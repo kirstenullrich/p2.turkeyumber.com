@@ -53,6 +53,7 @@ class posts_controller extends base_controller {
             $q = 'SELECT 
                     posts.content,
                     posts.created,
+                    posts.likes,
                     posts.user_id AS post_user_id,
                     users_users.user_id AS follower_id,
                     users.first_name,
@@ -67,7 +68,6 @@ class posts_controller extends base_controller {
             # Run the query, store the results in the variable $posts
             $posts = DB::instance(DB_NAME)->select_rows($q);
 
-            # Pass data to the View
             $this->template->content->posts = $posts;
 
            # Render the View
@@ -142,41 +142,18 @@ class posts_controller extends base_controller {
         }
 
 
-        public function baa_unbaa() {
-
-            # Set up the View
-            $this->template->head = View::instance("v_index_head");
-            $this->template->nav = View::instance("v_posts_index_nav");
-            $this->template->content = View::instance("v_posts_index");
-            $this->template->title   = "Bleats";
-
-            # Build the query to get all the users
-           $q = "SELECT COUNT(post_id)
-            FROM users_posts
-            WHERE post_id = ".$this->post; 
-
-
-            $baa = DB::instance(DB_NAME)->select_rows($q);
-
-            $this->template->content->posts = $baa;
-
-            # Render the view
-            echo $this->template;
-        }
-
+  
         public function baa($post_id) {
 
+            $set = "SET likes = likes+1 WHERE post_id =".$this->post->post_id;
             # Prepare the data array to be inserted
-            $data = Array(
-                "user_id" => $this->user->user_id,
-                "post_id" => $post_id
-                );
+            
 
             # Do the insert
-            DB::instance(DB_NAME)->insert('users_posts', $data);
+            DB::instance(DB_NAME)->update('posts', $set);
 
             # Send them back
-            Router::redirect("/posts");
+            Router::redirect("/posts/");
 
         }
 

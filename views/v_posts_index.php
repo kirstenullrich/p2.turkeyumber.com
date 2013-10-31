@@ -11,7 +11,10 @@
         <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>"  class="bleat">
             <?=Time::display($post['created'])?>
         </time>
-      <aside class="baa-left"> <?=$baa?> people baa this</aside>
+         <aside class="baa-left"><a href="/posts/baa/<?=$post['post_id']?>"><?=$post['likes']?> Baa</a></aside>
+
+      
+
         <aside class="baa-right">Revoke baa</aside>
     </article>
 
