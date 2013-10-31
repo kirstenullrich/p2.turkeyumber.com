@@ -11,12 +11,19 @@
         <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>"  class="bleat">
             <?=Time::display($post['created'])?>
         </time>
-         <aside class="baa-left"><a href="/posts/baa/<?=$post['post_id']?>"><?=$post['likes']?> Baa</a></aside>
+        
+        <?php if(isset($like[$post['post_id']])): ?>
 
-      
+            <aside class="baa-left">You baa this</aside>
+            <aside class="baa-right"><a href="/posts/unbaa/<?=$post['post_id']?>">Revoke baa</a></aside>
+            
+        <?php else: ?>
 
-        <aside class="baa-right">Revoke baa</aside>
-    </article>
+            <aside class="baa-right"><a href="/posts/baa/<?=$post['post_id']?>">Baa this!</a></aside>
+
+        <?php endif; ?>
+
+          </article>
 
     <?php endforeach; ?>
 

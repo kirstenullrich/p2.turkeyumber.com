@@ -239,6 +239,9 @@ aside.baa-right {
     margin-right: 8px;
 }
 
+aside.baa-right a{
+    color: rgb(188,200,50);
+}
 
 
 h1.flock-list{

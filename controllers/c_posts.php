@@ -51,9 +51,9 @@ class posts_controller extends base_controller {
 
             # Query
             $q = 'SELECT 
+                    posts.post_id,
                     posts.content,
                     posts.created,
-                    posts.likes,
                     posts.user_id AS post_user_id,
                     users_users.user_id AS follower_id,
                     users.first_name,
@@ -68,6 +68,15 @@ class posts_controller extends base_controller {
             # Run the query, store the results in the variable $posts
             $posts = DB::instance(DB_NAME)->select_rows($q);
 
+            $q = 'SELECT users_posts.post_id AS liked_id
+                FROM users_posts 
+                INNER JOIN posts 
+                    ON posts.post_id = users_posts.post_id
+                WHERE users_posts.user_id = '.$this->user->user_id;
+
+            $like = DB::instance(DB_NAME)->select_rows($q);
+
+            $this->template->content->like = $like;
             $this->template->content->posts = $posts;
 
            # Render the View
@@ -141,20 +150,16 @@ class posts_controller extends base_controller {
 
         }
 
-
-  
         public function baa($post_id) {
 
-            $set = "SET likes = likes+1 WHERE post_id =".$this->post->post_id;
-            # Prepare the data array to be inserted
-            
+            $data = Array(
+                "post_id" => $post_id,
+                "user_id" => $this->user->user_id,
+                );
 
-            # Do the insert
-            DB::instance(DB_NAME)->update('posts', $set);
+            DB::instance(DB_NAME)->insert("users_posts", $data);
 
-            # Send them back
             Router::redirect("/posts/");
-
         }
 
         public function unbaa($post_id) {
@@ -164,10 +169,8 @@ class posts_controller extends base_controller {
             DB::instance(DB_NAME)->delete('users_posts', $where_condition);
 
             # Send them back
-            Router::redirect("/posts");
+            Router::redirect("/posts/");
 
         }
-
-
-    }
+}
 ?>
