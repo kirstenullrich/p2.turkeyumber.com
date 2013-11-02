@@ -293,13 +293,28 @@ form.bleatform{
     text-align: center;
 }
 
-form.bleatform label {
+form.otherform{
+    display: block;
+    max-width: 500px;
+    text-align: left;
+}
+
+form.bleatform label, h1.general {
     display: block;
     color: rgb(132,34,60);
     font-family: 'Asap', sans-serif;
     font-weight: 700;
     font-size: 1.3em;
     margin-bottom: 15px;
+}
+
+form.otherform label{
+    display: block;
+    color: rgb(132,34,60);
+    font-family: 'Asap', sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    margin: 15px 0 8px 0;
 }
 
 form.bleatform textarea {
@@ -311,8 +326,7 @@ form.bleatform textarea {
     resize:none;
 }
 
-form.bleatform input[type=submit] {
-    float: right;
+form.bleatform input[type=submit], form.otherform input[type=submit] {
     margin-top: 15px;
     background-color: rgb(188,200,50);
     font-family: 'Asap', sans-serif;
@@ -325,11 +339,25 @@ form.bleatform input[type=submit] {
     -moz-border-radius: 4px;
 }
 
-form.bleatform input[type=submit]:active {
+form.bleatform input[type=submit]{
+    float: right;
+}
+
+form.bleatform input[type=submit]:active, form.otherform input[type=submit]:active {
     background-color: rgb(201,211,91);
 }
 
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
 
+.error {
+    font-size: 1em;
+    font-weight: 400;
+    color: red;
+    margin: 8px 0;
+}
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 

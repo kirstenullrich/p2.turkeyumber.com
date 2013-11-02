@@ -10,8 +10,8 @@
 
             <div class="sub">
                 <ul>
-                    <li><a class="active" href="/posts">All Bleats</a></li>
-                    <li><a href="/posts/self">Your Bleats</a></li>
+                    <li><a href="/posts">All Bleats</a></li>
+                    <li><a class="active" href="/posts/self">Your Bleats</a></li>
                 </ul>
             </div>
 

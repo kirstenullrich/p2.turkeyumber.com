@@ -1,14 +1,12 @@
 <div class="contentwrap clearfix">
-    <h1>Log in</h1>
+    <h1 class="general">Log in</h1>
 
-    <form method='POST' action='/users/p_login'>
+    <form class="otherform" method='POST' action='/users/p_login'>
 
-        Email<br>
+        <label for="email">Email</label>
         <input type='text' name='email'>
 
-        <br><br>
-
-        Password<br>
+        <label for="password">Password</label>
         <input type='password' name='password'>
 
         <br><br>
@@ -16,9 +14,9 @@
         <input type='submit' value='Log in'>
 
         <?php if(isset($error)): ?>
-            <div class='error'>
+            <p class='error'>
                 Login failed. Please double check your email and password.
-            </div>
+            </p>
             <br>
         <?php endif; ?>
 

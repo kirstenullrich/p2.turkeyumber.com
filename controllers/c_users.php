@@ -52,7 +52,7 @@ extends base_controller {
       //  $this->template->content = View::instance('v_users_signup');
       //  $this->template->content->errors = $errorsArray;
 
-            $_POST['image']  = Upload::upload($_FILES, "/uploads/", array("jpg", "jpeg", "gif", "png"), $_POST['image']);
+            $_POST['image']  = "nameless_sheep.jpg";
         # More data we want stored with the user
             $_POST['created']  = Time::now();
             $_POST['modified'] = Time::now();
@@ -68,13 +68,8 @@ extends base_controller {
 
        # Go back to Login page
             Router::redirect("/users/login/");
-
-    
-
-
     }
 
-    
 
     public function login($error = NULL) {
         # Setup view
@@ -155,7 +150,7 @@ extends base_controller {
 
 
 
-    public function profile() {
+    public function profile($error = NULL) {
 
         # If user is blank, they're not logged in; redirect them to the login page
             if(!$this->user) {
@@ -168,16 +163,41 @@ extends base_controller {
             $this->template->head = View::instance("v_profile_head");
             $this->template->nav = View::instance("v_posts_users_nav");
             $this->template->content = View::instance('v_users_profile');
-            $this->template->title   = "Profile of".$this->user->first_name;
+            $this->template->title   = $this->user->first_name."'s profile";
+            $this->template->content->error = $error;
 
         # Render template
             echo $this->template;
     }
 
+
      public function p_profile() {
-            $q = "SELECT * 
-                FROM users
-                WHERE user_id = ".$this->user->user_id;
+
+            if ($_FILES['image']['error'] == 0) {
+            $image = Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->user->user_id);
+
+            if($image == 'Invalid file type.') {
+            Router::redirect("/users/profile/error");
+            }
+            else {
+                // process the upload
+                $data = Array("image" => $image);
+                DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$this->user->user_id);
+
+                // resize the image
+                $imgObj = new Image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $image);
+                $imgObj->resize(75,75, "crop");
+                $imgObj->save_image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $image);
+            }
+        }
+        else
+        {
+            // return an error
+            Router::redirect("/users/profile/error/");
+        }
+
+        // Redirect back to the profile page
+        Router::redirect('/users/profile/');
     }
 
 } # end of the class

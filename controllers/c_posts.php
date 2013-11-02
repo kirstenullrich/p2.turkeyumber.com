@@ -57,7 +57,8 @@ class posts_controller extends base_controller {
                     posts.user_id AS post_user_id,
                     users_users.user_id AS follower_id,
                     users.first_name,
-                    users.last_name
+                    users.last_name,
+                    users.image
                 FROM posts
                 INNER JOIN users_users 
                     ON posts.user_id = users_users.user_id_followed
@@ -74,16 +75,34 @@ class posts_controller extends base_controller {
                     ON posts.post_id = users_posts.post_id
                 WHERE users_posts.user_id = '.$this->user->user_id;
 
-            $like = DB::instance(DB_NAME)->select_rows($q);
+            $like = DB::instance(DB_NAME)->select_array($q, 'liked_id');
 
-            $this->template->content->like = $like;
+            
+
+           // $this->template->content->like = $like;
             $this->template->content->posts = $posts;
+            $this->template->content->like = $like;
 
            # Render the View
             echo $this->template;
 
         }
 
+        public function self(){
+            $this->template->head = View::instance("v_index_head");
+            $this->template->nav = View::instance('v_posts_self_nav');
+            $this->template->content = View::instance('v_posts_self');
+
+            $q = "SELECT *
+                FROM posts
+                INNER JOIN users 
+                    ON posts.user_id = users.user_id
+                WHERE users.user_id = ".$this->user->user_id;
+            $posts = DB::instance(DB_NAME)->select_rows($q);
+            $this->template->content->posts = $posts;
+
+            echo $this->template;
+        }
 
         public function users() {
 
@@ -95,7 +114,8 @@ class posts_controller extends base_controller {
 
             # Build the query to get all the users
             $q = "SELECT *
-                FROM users";
+                FROM users
+                WHERE user_id != ".$this->user->user_id;
 
             # Execute the query to get all the users. 
             # Store the result array in the variable $users
