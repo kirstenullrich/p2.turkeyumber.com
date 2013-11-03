@@ -64,7 +64,8 @@ class posts_controller extends base_controller {
                     ON posts.user_id = users_users.user_id_followed
                 INNER JOIN users 
                     ON posts.user_id = users.user_id
-                WHERE users_users.user_id = '.$this->user->user_id;
+                WHERE users_users.user_id = '.$this->user->user_id.
+                ' ORDER BY posts.created DESC';
 
             # Run the query, store the results in the variable $posts
             $posts = DB::instance(DB_NAME)->select_rows($q);
@@ -77,9 +78,6 @@ class posts_controller extends base_controller {
 
             $like = DB::instance(DB_NAME)->select_array($q, 'liked_id');
 
-            
-
-           // $this->template->content->like = $like;
             $this->template->content->posts = $posts;
             $this->template->content->like = $like;
 
@@ -93,11 +91,19 @@ class posts_controller extends base_controller {
             $this->template->nav = View::instance('v_posts_self_nav');
             $this->template->content = View::instance('v_posts_self');
 
-            $q = "SELECT *
+            $q = "SELECT
+                    posts.post_id,
+                    posts.content,
+                    posts.created,
+                    posts.user_id AS post_user_id,
+                    users.first_name,
+                    users.last_name,
+                    users.image
                 FROM posts
                 INNER JOIN users 
                     ON posts.user_id = users.user_id
-                WHERE users.user_id = ".$this->user->user_id;
+                WHERE users.user_id = ".$this->user->user_id.
+                " ORDER BY posts.created DESC";
             $posts = DB::instance(DB_NAME)->select_rows($q);
             $this->template->content->posts = $posts;
 

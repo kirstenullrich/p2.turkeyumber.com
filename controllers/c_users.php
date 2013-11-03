@@ -14,12 +14,12 @@ extends base_controller {
 
 
 
-    public function signup($missing = NULL) {
+    public function signup($error = NULL) {
 
         # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
-            $this->template->content->missing = $missing;
+            $this->template->content->error = $error;
 
 
         # Render template
@@ -29,28 +29,17 @@ extends base_controller {
 
     public function p_signup() {
 
-        $missingArray = Array();
-        $signupArray = Array();
-        $errorMessage = 'Missing';
-
-
-                foreach($_POST as $key => $value) {
-                    if (empty($value)) {
-                        $missingArray[] = $key;
-                    } else if (!empty($value)) {
-                        $signupArray[] = $key;
-                    }
+                foreach($_POST as $formfield) {
+                    if (empty($formfield)) {
+                        Router::redirect("/users/signup/missing");
+                    } 
                 }
 
+            $emailcheck = $this->userObj->confirm_unique_email($_POST['email']);
+                if ($emailcheck == false){
+                    Router::redirect("/users/signup/dupemail");
+                }
 
-       if (!empty($missingArray)) {
-         // print_r($signupArray);
-        Router::redirect("/users/signup/missing");
-        }
-
-
-      //  $this->template->content = View::instance('v_users_signup');
-      //  $this->template->content->errors = $errorsArray;
 
             $_POST['image']  = "nameless_sheep.jpg";
         # More data we want stored with the user
@@ -154,13 +143,13 @@ extends base_controller {
 
         # If user is blank, they're not logged in; redirect them to the login page
             if(!$this->user) {
-                Router::redirect('/users/login');
+            Router::redirect('/users/login');
             }
 
         # If they weren't redirected away, continue:
 
         # Setup view
-            $this->template->head = View::instance("v_profile_head");
+            $this->template->head = View::instance("v_index_head");
             $this->template->nav = View::instance("v_posts_users_nav");
             $this->template->content = View::instance('v_users_profile');
             $this->template->title   = $this->user->first_name."'s profile";

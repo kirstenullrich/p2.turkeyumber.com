@@ -28,6 +28,13 @@ body {
     width: 100%;
 }
 
+p {
+    font-size: 1em;
+    font-weight: 400;
+    color: #555;
+    position: relative;
+}
+
 a {
     text-decoration: none;
     color: rgb(132,34,60);
@@ -51,7 +58,7 @@ header {
     margin: 0 auto;
 }
 
-.logout-profile {
+.logout-profile, .signup {
     position: relative;
     color: rgb(132,34,60);
     font-size: .9em;
@@ -181,7 +188,7 @@ div.follow {
 }
 
 img.bleat, img.follow  {
-    margin: 0 15px 0 8px; 
+    margin: 0 15px 15px 8px; 
     float: left;
 }
 
@@ -193,11 +200,7 @@ h1.bleat, h1.follow {
 }
 
 p.bleat, p.follow {
-    font-size: 1em;
-    font-weight: 400;
-    color: #555;
     margin: 0 0 0 8px;
-    position: relative;
 }
 
 time.bleat  {
@@ -217,7 +220,7 @@ aside.baa-left {
     display: block;
     float: left;
     position: relative;
-    margin: 0 0 7px 8px;
+    margin: 0 0 7px 98px;
 }
 
 aside.baa-left:before {
@@ -299,7 +302,7 @@ form.otherform{
     text-align: left;
 }
 
-form.bleatform label, h1.general {
+form.bleatform label, h1 {
     display: block;
     color: rgb(132,34,60);
     font-family: 'Asap', sans-serif;
@@ -358,6 +361,11 @@ form.bleatform input[type=submit]:active, form.otherform input[type=submit]:acti
     color: red;
     margin: 8px 0;
 }
+
+.error a{
+    color: #555;
+}
+
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 
