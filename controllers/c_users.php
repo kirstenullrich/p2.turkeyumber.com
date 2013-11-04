@@ -7,11 +7,9 @@ extends base_controller {
     } 
 
 
-
     public function index() {
-        Router::redirect("/posts");
+        Router::redirect("/users/login");
     }
-
 
 
     public function signup($error = NULL) {
@@ -21,28 +19,29 @@ extends base_controller {
             $this->template->title   = "Sign Up";
             $this->template->content->error = $error;
 
-
         # Render template
             echo $this->template;
 
     }
 
+
     public function p_signup() {
 
-                foreach($_POST as $formfield) {
-                    if (empty($formfield)) {
-                        Router::redirect("/users/signup/missing");
-                    } 
-                }
+        # Check for blank fields
+            foreach($_POST as $formfield) {
+                if (empty($formfield)) {
+                    Router::redirect("/users/signup/missing");
+                } 
+            }
 
+        # Check for duplicate email addresses
             $emailcheck = $this->userObj->confirm_unique_email($_POST['email']);
                 if ($emailcheck == false){
                     Router::redirect("/users/signup/dupemail");
                 }
 
-
-            $_POST['image']  = "nameless_sheep.jpg";
         # More data we want stored with the user
+            $_POST['image']  = "nameless_sheep.jpg";
             $_POST['created']  = Time::now();
             $_POST['modified'] = Time::now();
 
@@ -61,15 +60,18 @@ extends base_controller {
 
 
     public function login($error = NULL) {
+
         # Setup view
             $this->template->head = View::instance("v_index_head");
             $this->template->nav = View::instance("v_users_nav");
             $this->template->content = View::instance('v_users_login');
             $this->template->title   = "Login";
             $this->template->content->error = $error;
+
         # Render template
             echo $this->template;
     }
+
 
     public function p_login() {
 
@@ -109,12 +111,11 @@ extends base_controller {
                 setcookie("token", $token, strtotime('+1 year'), '/');
 
             # Send them to the main page - or whever you want them to go
-                Router::redirect("/");
+                Router::redirect("/posts/users/");
 
         }
 
     }
-
 
 
     public function logout() {
@@ -136,7 +137,6 @@ extends base_controller {
             Router::redirect("/users/login");
 
     }
-
 
 
     public function profile($error = NULL) {
@@ -162,18 +162,22 @@ extends base_controller {
 
      public function p_profile() {
 
+        # Upload a profile image
             if ($_FILES['image']['error'] == 0) {
             $image = Upload::upload($_FILES, "/uploads/avatars/", array("JPG", "JPEG", "jpg", "jpeg", "gif", "GIF", "png", "PNG"), $this->user->user_id);
 
+        # Error message if the file type isn't on the list
             if($image == 'Invalid file type.') {
             Router::redirect("/users/profile/error");
             }
+
             else {
-                // process the upload
+
+                # Process the upload
                 $data = Array("image" => $image);
                 DB::instance(DB_NAME)->update("users", $data, "WHERE user_id = ".$this->user->user_id);
 
-                // resize the image
+                # Resize the image
                 $imgObj = new Image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $image);
                 $imgObj->resize(75,75, "crop");
                 $imgObj->save_image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $image);
@@ -181,11 +185,11 @@ extends base_controller {
         }
         else
         {
-            // return an error
+            # Error message if file isn't able to be processed
             Router::redirect("/users/profile/error/");
         }
 
-        // Redirect back to the profile page
+        # Go back to the profile page
         Router::redirect('/users/profile/');
     }
 

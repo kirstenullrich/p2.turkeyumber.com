@@ -12,7 +12,7 @@
 
             <p class="bleat"><?=$post['content']?></p>
 
-            <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>"  class="bleat">
+            <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>" class="bleat">
                 <?=Time::display($post['created'])?>
             </time>
             
