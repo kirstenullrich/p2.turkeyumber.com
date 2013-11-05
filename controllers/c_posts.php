@@ -185,7 +185,7 @@ class posts_controller extends base_controller {
 
             DB::instance(DB_NAME)->insert("users_posts", $data);
 
-            Router::redirect("/posts/");
+            Router::redirect("/posts");
         }
 
         public function unbaa($post_id) {
@@ -195,7 +195,7 @@ class posts_controller extends base_controller {
             DB::instance(DB_NAME)->delete('users_posts', $where_condition);
 
             # Send them back
-            Router::redirect("/posts/");
+            Router::redirect("/posts");
 
         }
 }
