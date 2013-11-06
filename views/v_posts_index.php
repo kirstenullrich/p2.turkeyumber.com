@@ -17,11 +17,33 @@
             </time>
             
                 <?php if(isset($like[$post['post_id']])): ?>
-                    <aside class="baa-left">You baa this</aside>
+
+                    <?php foreach($baas as $totalbaas):?>
+
+                        <?php if ($totalbaas['post_id'] == $post['post_id']): ?>
+
+                            <aside class="baa-left"><?=$totalbaas['total']?> baa, including yours.</aside>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
                     <aside class="baa-right"><a href="/posts/unbaa/<?=$post['post_id']?>">Revoke baa</a></aside>
 
                 <?php else: ?>
+
+                    <?php foreach($baas as $totalbaas):?>
+
+                        <?php if ($totalbaas['post_id'] == $post['post_id']): ?>
+
+                            <aside class="baa-left"><?=$totalbaas['total']?> baa.</aside>
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
                     <aside class="baa-right"><a href="/posts/baa/<?=$post['post_id']?>">Baa this!</a></aside>
+
                 <?php endif; ?>
 
               </article>

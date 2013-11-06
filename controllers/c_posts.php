@@ -78,6 +78,12 @@ class posts_controller extends base_controller {
 
             $like = DB::instance(DB_NAME)->select_array($q, 'liked_id');
 
+
+            $q = "SELECT post_id, COUNT(1) AS total FROM users_posts GROUP BY post_id";
+            $baas = DB::instance(DB_NAME)->select_rows($q);
+
+            
+            $this->template->content->baas = $baas;
             $this->template->content->posts = $posts;
             $this->template->content->like = $like;
 
@@ -198,5 +204,6 @@ class posts_controller extends base_controller {
             Router::redirect("/posts");
 
         }
+
 }
 ?>
