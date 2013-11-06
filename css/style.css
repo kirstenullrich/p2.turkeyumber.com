@@ -355,6 +355,10 @@ form.bleatform input[type=submit]:active, form.otherform input[type=submit]:acti
     text-align: center;
 }
 
+.bottommsg {
+    margin-top: 40px;
+}
+
 .error {
     font-size: 1em;
     font-weight: 400;
